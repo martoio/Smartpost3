@@ -148,25 +148,20 @@ if (defined('ABSPATH')) {
     add_action( 'wp_enqueue_script', 'smartpost3_script');
 
     function smartpost3_script() {
-        wp_enqueue_script('jquery');
-        wp_enqueue_script('jquery-ui-slider');
-        wp_enqueue_script('jquery-ui-sortable');
-        wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
+        wp_register_script( 'smartpost_script', plugins_url('js/smartpost.js', __FILE__), array('jquery'), '1.0', true );
+        wp_register_script( 'modal_effects', plugins_url('js/modalEffects.js', __FILE__), array('jquery'), '1.1', true );
+        wp_register_script( 'classie', plugins_url('js/classie.js', __FILE__), array('jquery'), '1.1', true );
 
-        wp_register_script( 'table_sort', plugins_url('js/jquery.tablesorter.min.js', __FILE__), array('jquery'), '1.1', true );
-        wp_register_script( 'smartpost_script', plugins_url('js/smartpost.js', __FILE__), array('jquery'), '1.1', true );
-        wp_register_script( 'timepicker', plugins_url('js/jquery.timepicker.min.js', __FILE__), array('jquery'), '1.1', true );
+        wp_register_style( 'smartpost_css', plugins_url('css/smartpost3.css', __FILE__) );
 
-        wp_register_style( 'timepicker_css', plugins_url('css/jquery.timepicker.css', __FILE__) );
-
-        wp_localize_script( 'divino_script', 'plugin_url', array( 'plugin_url' => plugins_url()) );
-
-
-        wp_enqueue_script( 'table_sort' );
-        wp_enqueue_script( 'timepicker' );
         wp_enqueue_script( 'smartpost_script' );
+        wp_enqueue_script( 'classie' );
+        wp_enqueue_script( 'modal_effects' );
+        wp_enqueue_script( 'jquery' );
+        wp_enqueue_script( 'jquery-ui-sortable' );
 
-        wp_enqueue_style( 'timepicker_css' );
+        wp_enqueue_style( 'smartpost_css' );
+        wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
     }
 
     /////// CODE FOR SETTINGS PAGE STARTS HERE //////
