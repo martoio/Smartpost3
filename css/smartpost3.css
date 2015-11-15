@@ -3,15 +3,19 @@
 	top: 50%;
 	left: 50%;
 	width: 50%;
-	max-width: 830px;
+	max-width: 960px;
 	min-width: 320px;
 	height: auto;
+	min-height: 450px;
+	max-height: 700px;
+	overflow-y: auto;
 	z-index: 20000000;
 	visibility: hidden;
 	backface-visibility: hidden;
 	transform: translateX(-50%) translateY(-50%);
 	background: #8FBBBC;
 	box-shadow: 0 0 15px #888888;
+	font-size: 1.1em;
 }
 
 .sp-modal h3 {
@@ -22,10 +26,57 @@
 	color: white;
 
 }
-
-.sp-modal .sp-content div {
-	padding: 20px;
+.sp-modal .sp-content {
+	margin-bottom: 15px;
+	clear: all;
 }
+
+.sp-modal .sp-content #sp-accordion {
+	width: 62.5%;
+	float: left;
+	display: inline-block;
+}
+.sp-modal .sp-content #result {
+	width: 36%;
+	min-height: 100px;
+	margin-left: 10px;
+	background: white;
+	display: inline-block;
+	float: right;
+}
+
+.sp-modal div#options{
+	margin: 40px auto;
+	display: block;
+	width: 100%;
+}
+
+
+.sp-modal #options div {
+	width: 200px;
+	margin: 0 auto;
+}
+
+.sp-modal button{
+	border: none;
+	border-radius: 3px;
+	text-transform: uppercase;
+	color: white;
+	letter-spacing: 1px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 0.9em;
+	padding: 8px;
+
+}
+
+.sp-modal button.sp-close {
+	background: #c0392b;
+}
+.sp-modal button.sp-accept {
+	background: #008B00;
+}
+
 .sp-show {
 	visibility: visible;
 }
@@ -46,4 +97,77 @@
 .sp-show ~ .sp-overlay {
 	opacity: 1;
 	visibility: visible;
+}
+
+/*
+======================
+======= Modal Components 
+======================
+*/
+
+.sp-modal .sp-content .sp-modal-section h4{
+	background: #eee;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 1.2em;
+	margin: 0px;
+}
+
+.sp-modal .sp-content .sp-modal-section h4 span{
+	margin-left: 20px;
+}
+
+.sp-modal .sp-content .sp-modal-section .sp-arrow-down {
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid black;
+	display: inline;
+	position: relative;
+	top: 15px;
+}
+
+.sp-modal .sp-content .sp-modal-section .sp-arrow-up {
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid black;
+	display: inline;
+	position: relative;
+	bottom: 15px;
+}
+
+.sp-modal-section .sp-modal-section-options {
+	background: white;
+	padding: 15px;
+}
+
+.sp-modal-section-options input:disabled{
+	background: #eee;
+}
+
+.inner {
+	border: 1px solid #eee;
+}
+/*
+======================
+=======  End of Modal Components 
+======================
+*/
+
+ul#errors {
+	padding: 20px;
+	font-size: 1.3em;
+	background: #f2dede;
+	color: #a94442;
+	border: 1px #ebccd1 solid;
+	border-radius: 10px;
+	width: 50%;
+	list-style-type: disc;
+}
+
+ul#errors li{
+	margin-left: 10px;
 }

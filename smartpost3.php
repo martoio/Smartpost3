@@ -6,6 +6,7 @@
 
 
 if (defined('ABSPATH')) {
+
     register_activation_hook(__FILE__, 'smartpost3_install');
 
     function smartpost3_install(){
@@ -159,6 +160,7 @@ if (defined('ABSPATH')) {
         wp_enqueue_script( 'modal_effects' );
         wp_enqueue_script( 'jquery' );
         wp_enqueue_script( 'jquery-ui-sortable' );
+        wp_enqueue_script( 'jquery-ui-accordion' );
 
         wp_enqueue_style( 'smartpost_css' );
         wp_enqueue_style( 'jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
@@ -169,12 +171,32 @@ if (defined('ABSPATH')) {
     function smartpost_settings_page() {
         //Calls function to include all the necessary classes (found in the plugin folder);
         include_classes();
+
+        if(isset($_POST) && !empty($_POST)) {
+            echo '<pre>';
+            //print_r($_POST);
+            echo '</pre>';
+
+            $validator = new Validator('component', $_POST);
+            $errors = $validator->errors();
+
+        }
+
+        if(!empty($errors)) {
+
+            echo '<ul id="errors">';
+            echo '<li>' . implode( '</li><li>', $errors) . '</li>';
+            echo '</ul>';
+        }
+        
         //Checks if a tab is set in the GET parameters. If not, we set it to the default selected tab.
         if ( isset ( $_GET['tab'] ) ){
             smartpost_admin_tabs($_GET['tab']);
         } else { 
             smartpost_admin_tabs();
         }
+
+
 
     }
 
@@ -212,7 +234,10 @@ if (defined('ABSPATH')) {
 
     // Includes all the necessary classes that are called;
     function include_classes(){
-        require_once 'settingsBuilder.php';
+        require_once 'SettingsBuilder.php';
+        require_once 'Validator.php';
+        require_once 'ValidateComponent.php';
+        require_once 'ValidateTemplate.php';
     }
 
 }
